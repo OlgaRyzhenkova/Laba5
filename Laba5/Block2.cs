@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,8 @@ namespace Laba5
             Console.WriteLine("=== Блок 2 ===");
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            DateTime checkDate;
-            var students = ReadStudentsFromFile("input.txt", out checkDate);
+            var students = ReadStudentsFromFile("input.txt");
+            DateTime checkDate = DateTime.Today;  // Використовуємо поточну дату
 
             int count = 0;
             Console.WriteLine($"Студенти молодші за 17 років на {checkDate:dd.MM.yyyy}:\n");
@@ -46,11 +47,17 @@ namespace Laba5
             Console.WriteLine("Натисніть будь-яку клавішу, щоб повернутися до меню...");
             Console.ReadKey();
         }
+
         static List<(string lastName, string firstName, string patronymic, char gender, DateTime birthDate, int? math, int? physics, int? informatic, int scholarship)>
-           ReadStudentsFromFile(string filePath, out DateTime checkDate)
+           ReadStudentsFromFile(string filePath)
         {
             var list = new List<(string, string, string, char, DateTime, int?, int?, int?, int)>();
-            checkDate = DateTime.MinValue;
+
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("!!! Файл не існує.");
+                return list;
+            }
 
             string[] lines = File.ReadAllLines(filePath);
             if (lines.Length == 0)
@@ -59,13 +66,7 @@ namespace Laba5
                 return list;
             }
 
-            if (!DateTime.TryParseExact(lines[0], "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out checkDate))
-            {
-                Console.WriteLine("!!! Некоректна дата у першому рядку: " + lines[0]);
-                return list;
-            }
-
-            for (int i = 1; i < lines.Length; i++)
+            for (int i = 0; i < lines.Length; i++)
             {
                 string line = lines[i];
                 if (string.IsNullOrWhiteSpace(line))
@@ -142,4 +143,3 @@ namespace Laba5
         }
     }
 }
-
