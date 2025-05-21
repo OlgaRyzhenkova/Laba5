@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Laba5
 {
+    using Student = (string lastName, string firstName, string patronymic, char gender, DateTime birthDate, int? math, int? physics, int? informatic, int scholarship);
     internal class Block2
     {
         public static void Run()
@@ -48,10 +49,9 @@ namespace Laba5
             Console.ReadKey();
         }
 
-        static List<(string lastName, string firstName, string patronymic, char gender, DateTime birthDate, int? math, int? physics, int? informatic, int scholarship)>
-           ReadStudentsFromFile(string filePath)
+        static List<Student> ReadStudentsFromFile(string filePath)
         {
-            var list = new List<(string, string, string, char, DateTime, int?, int?, int?, int)>();
+            List<Student> list = new List<Student>();
 
             if (!File.Exists(filePath))
             {
