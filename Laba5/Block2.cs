@@ -17,7 +17,7 @@ namespace Laba5
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             var students = ReadStudentsFromFile("input.txt");
-            DateTime checkDate = DateTime.Today;  // Використовуємо поточну дату
+            DateTime checkDate = DateTime.Today; 
 
             int count = 0;
             Console.WriteLine($"Студенти молодші за 17 років на {checkDate:dd.MM.yyyy}:\n");

@@ -18,7 +18,6 @@ namespace Laba5
             if (!File.Exists(inputFile))
             {
                 Console.WriteLine("Файл не знайдено!");
-                Console.WriteLine($"Очікуваний шлях: {Path.GetFullPath(inputFile)}");
                 Console.WriteLine("Натисніть будь-яку клавішу для повернення в меню...");
                 Console.ReadKey();
                 return;
@@ -38,7 +37,9 @@ namespace Laba5
             Console.WriteLine("Натисніть будь-яку клавішу, щоб повернутися до меню...");
             Console.ReadKey();
         }
-        static List<(string surname, string name, string patronymic, string gender, string birthdate, int mark1, int mark2, int mark3, int scholarship)> ReadStudentsFromFile(string filePath)
+        static List<(string surname, string name, string patronymic, string gender, string birthdate, int mark1, int mark2, int mark3, int scholarship)> 
+            ReadStudentsFromFile(string filePath)
+
         {
             var students = new List<(string, string, string, string, string, int, int, int, int)>();
             string[] lines = File.ReadAllLines(filePath);
@@ -139,7 +140,7 @@ namespace Laba5
         {
             if (input == "-")
             {
-                mark = 0;
+                mark = 2;
                 return true;
             }
 
