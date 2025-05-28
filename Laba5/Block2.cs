@@ -94,18 +94,16 @@ namespace Laba5
                     Console.WriteLine("!!! Некоректне поле стать: " + parts[3]);
                     isValid = false;
                 }
-
                 DateTime birthDate = new DateTime();
                 if (!DateTime.TryParseExact(parts[4], "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out birthDate))
                 {
                     Console.WriteLine("!!! Некоректна дата: " + parts[4]);
                     isValid = false;
                 }
-
                 int? math = ParseGrade(parts[5]);
                 int? physics = ParseGrade(parts[6]);
-                int? informatic = ParseGrade(parts[7]);
-
+                int? informatic = ParseGrade(parts[7]); 
+                
                 int scholarship = 0;
                 bool parsed = int.TryParse(parts[8], out scholarship);
                 if (!parsed || (scholarship != 0 && (scholarship < 1167 || scholarship > 3000)))
@@ -113,7 +111,6 @@ namespace Laba5
                     Console.WriteLine("!!! Некоректна стипендія: " + parts[8]);
                     isValid = false;
                 }
-
                 if (isValid)
                 {
                     list.Add((lastName, firstName, patronymic, gender, birthDate, math, physics, informatic, scholarship));
