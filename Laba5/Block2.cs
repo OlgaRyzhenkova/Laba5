@@ -108,7 +108,7 @@ namespace Laba5
 
                 int scholarship = 0;
                 bool parsed = int.TryParse(parts[8], out scholarship);
-                if (!parsed || (scholarship != 0 && (scholarship < 1167 || scholarship > 4321)))
+                if (!parsed || (scholarship != 0 && (scholarship < 1167 || scholarship > 3000)))
                 {
                     Console.WriteLine("!!! Некоректна стипендія: " + parts[8]);
                     isValid = false;
